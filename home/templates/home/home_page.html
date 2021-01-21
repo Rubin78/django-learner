@@ -1,0 +1,47 @@
+{#{% extends "base.html" %}#}
+{#{% load static %}#}
+{##}
+{#{% block body_class %}template-homepage{% endblock %}#}
+{##}
+{#{% block extra_css %}#}
+{##}
+{#{% comment %}#}
+{#Delete the line below if you're just getting started and want to remove the welcome screen!#}
+{#{% endcomment %}#}
+{#<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">#}
+{#{% endblock extra_css %}#}
+{##}
+{#{% block content %}#}
+{##}
+{#{% comment %}#}
+{#Delete the line below if you're just getting started and want to remove the welcome screen!#}
+{#{% endcomment %}#}
+{#{% include 'home/welcome_page.html' %}#}
+{##}
+{#{% endblock content %}#}
+
+
+
+
+
+{% extends "blog/base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}FieldPanel("banner_subtitle"),
+
+{% block content %}
+{{ page.body }}
+
+{% with blocks=self.body %}
+
+    {% for block in blocks %}
+        {% if block.block_type == 'heading' %}
+            <h2>{{ block.value }}</h2>
+        {% else %}
+           <section class="block-{{ block.block_type }}">
+               {{ block }}
+           </section>
+        {% endif %}
+    {% endfor %}
+
+{% endwith %}
+
+{% endblock %}
